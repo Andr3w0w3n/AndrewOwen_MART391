@@ -4,12 +4,14 @@ using UnityEngine;
 using System.IO;
 using System;
 using System.Runtime.InteropServices;
+using TMPro;
 //using System.Diagnostics;
 
 public class NewFolder : MonoBehaviour
 {
     private string defaultDir; //this will be the directory that will be defaulted from the start screen
     private Boolean onFolder;
+    public GameObject FileDirBG;
     //public GameObject fileFolder;
     //private Boolean mouseOver;
     // Start is called before the first frame update
@@ -39,23 +41,11 @@ public class NewFolder : MonoBehaviour
     }
     void OnMouseDown()
     {
-        if(onFolder == true)
+        //private GameObject[] files;
+        if (onFolder == true)
         {
-            //puts all file names into a string array
-            string[] files = Directory.GetFiles(defaultDir);
-            string[] directories = Directory.GetDirectories(defaultDir);
-            for (int i = 0; i < directories.Length - 1; i++)
-            {
-                string result;
-                result = Path.GetFileName(directories[i]);
-                Debug.Log(result);
-            }
-            for (int i = 0; i < files.Length - 1; i++)
-            {
-                string result;
-                result = Path.GetFileName(files[i]);
-                Debug.Log(result);
-            }
+            GameObject NewDefaultFolder = Instantiate(FileDirBG, new Vector3(0, 2.5f, -0.01f), Quaternion.identity);
+            NewDefaultFolder.GetComponent<FileDirBG>().directory = defaultDir;
         }
     }
 }
