@@ -42,7 +42,7 @@ public class NewFolder : MonoBehaviour
     void OnMouseDown()
     {
         //private GameObject[] files;
-        if (onFolder == true)
+        if (onFolder)
         {
             GameObject NewDefaultFolder = Instantiate(FileDirBG, new Vector3(0, 2.5f, -0.01f), Quaternion.identity);
             NewDefaultFolder.GetComponent<FileDirBG>().directory = defaultDir;

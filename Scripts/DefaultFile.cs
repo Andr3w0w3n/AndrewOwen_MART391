@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-using System;
 using System.Runtime.InteropServices;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
@@ -12,6 +10,7 @@ public class DefaultFile : MonoBehaviour
 {
     public string directory;
     public new string name;
+    public bool destroy = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +20,7 @@ public class DefaultFile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void assignPath(string p)
     {

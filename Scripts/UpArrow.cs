@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DefaultFolder : MonoBehaviour
+public class UpArrow : MonoBehaviour
 {
-    public string folderDirectory;
-    public string homeDirectory;
-    public new string name;
-    public bool onFolder = false;
+    public bool upClicked = false;
+    private bool over = false;
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -22,17 +20,15 @@ public class DefaultFolder : MonoBehaviour
 
     void OnMouseOver()
     {
-        onFolder = true;
+        over = true;
     }
     void OnMouseExit()
     {
-        onFolder = false;
+        over = false;
     }
     void OnMouseDown()
     {
-        if (onFolder)
-        {
-
-        }
+        if (over)
+            upClicked = true;
     }
 }
