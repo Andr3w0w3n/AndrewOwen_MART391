@@ -7,32 +7,32 @@ public class DefaultFolder : MonoBehaviour
     public string folderDirectory;
     public string homeDirectory;
     public new string name;
-    public bool onFolder = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public bool changeDirectory = false;
+    public GameObject selectCircle;
+    public float selectTimer = 7f;
 
     void OnMouseOver()
     {
-        onFolder = true;
+        if (!ApplicationManager.instance.circleExist)
+        {
+            GameObject circle = Instantiate(selectCircle, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z - 0.03f), Quaternion.identity);
+            circle.GetComponent<TargetCircle>().timer = 2f;
+            circle.transform.eulerAngles = new Vector3(0, this.transform.eulerAngles.y, 0);
+        }
+        if (ApplicationManager.instance.circleExist == true)
+        {
+            if (GameObject.FindWithTag("SelectCircle") != null)
+            {
+                if (GameObject.FindWithTag("SelectCircle").GetComponent<TargetCircle>().done)
+                {
+                    changeDirectory = true;
+                    Object.Destroy(GameObject.FindWithTag("SelectCircle").gameObject);
+                }
+            }
+        }
     }
     void OnMouseExit()
     {
-        onFolder = false;
-    }
-    void OnMouseDown()
-    {
-        if (onFolder)
-        {
-
-        }
+        ApplicationManager.instance.circleExist = false;
     }
 }

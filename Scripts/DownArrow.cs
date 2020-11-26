@@ -5,7 +5,8 @@ using UnityEngine;
 public class DownArrow : MonoBehaviour
 {
     public bool downClicked = false;
-    private bool over = false;
+    public GameObject selectCircle;
+    public float selectTime = 0.5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,15 +21,26 @@ public class DownArrow : MonoBehaviour
 
     void OnMouseOver()
     {
-        over = true;
+        if (!ApplicationManager.instance.circleExist)
+        {
+            GameObject circle = Instantiate(selectCircle, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z - 0.05f), Quaternion.identity);
+            circle.GetComponent<TargetCircle>().timer = selectTime;
+            circle.transform.eulerAngles = new Vector3(0, this.transform.eulerAngles.y, 0);
+        }
+        if (ApplicationManager.instance.circleExist == true)
+        {
+            if (GameObject.FindWithTag("SelectCircle") != null)
+            {
+                if (GameObject.FindWithTag("SelectCircle").GetComponent<TargetCircle>().done)
+                {
+                    downClicked = true;
+                    Object.Destroy(GameObject.FindWithTag("SelectCircle").gameObject);
+                }
+            }
+        }
     }
     void OnMouseExit()
     {
-        over = false;
-    }
-    void OnMouseDown()
-    {
-        if (over)
-            downClicked = true;
+        ApplicationManager.instance.circleExist = false;
     }
 }

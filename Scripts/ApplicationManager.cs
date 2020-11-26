@@ -9,6 +9,9 @@ public class ApplicationManager : MonoBehaviour
 {
     public string defaultDirectory = @"C:\Users\epica\OneDrive\Documents";
     public static ApplicationManager instance;
+    public int directoryCount = 0;
+    public bool circleExist = false;
+    public bool menuExist = false;
     //assign the instance as "this" if none currently exist
     void Awake()
     {
@@ -26,7 +29,8 @@ public class ApplicationManager : MonoBehaviour
     {
         Cursor.visible = true;
         //May uncomment this when I figure out how to make this application ready for VR
-        //Cursor.lockState = CursorLockMode.Locked;
+        //so its not ready for VR but I am getting the 3D side of it down
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
